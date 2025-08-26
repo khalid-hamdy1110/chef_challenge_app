@@ -126,3 +126,11 @@ extension RecipeGetters on Recipe {
     return total.inMinutes;
   }
 }
+
+@freezed
+abstract class RecipeHistory with _$RecipeHistory {
+  const factory RecipeHistory({
+    required Recipe recipe,
+    required List<SummaryStep> summary
+  }) = _RecipeHistory;
+}

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:chef_challenge_project/reusable_functions.dart';
 
 class RecipeGridCard extends StatelessWidget {
   const RecipeGridCard({super.key, required this.recipe});
@@ -905,6 +906,180 @@ class LiveTimelineBar extends StatelessWidget {
           },
         ),
       ],
+    );
+  }
+}
+
+class RecipeHistoryCard extends StatelessWidget {
+  const RecipeHistoryCard({super.key, required this.recipeHistory});
+
+  final RecipeHistory recipeHistory;
+
+  @override
+  Widget build(BuildContext context) {
+    final recipe = recipeHistory.recipe;
+    final summary = recipeHistory.summary;
+
+    return GestureDetector(
+      onTap: () => context.router.push(
+        RecipeChallengeSummaryRoute(recipe: recipe, summary: summary),
+      ),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 8),
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          color: const Color.fromRGBO(24, 27, 33, 1),
+        ),
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              Expanded(
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    AspectRatio(
+                      aspectRatio: 1,
+                      child: Image.asset(recipe.imageUrl, fit: BoxFit.cover),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        width: 10,
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromRGBO(24, 27, 33, 0),
+                              Color.fromRGBO(24, 27, 33, 0.7),
+                              Color.fromRGBO(24, 27, 33, 1),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                flex: 2,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 8),
+                    CustomText(
+                      text: recipe.name,
+                      nunito: true,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: TextColor.white,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 8),
+
+                    BlocSelector<UserCubit, UserState, Difficulty>(
+                      selector: (state) => state.cookingLevel!,
+                      builder: (context, cookingLevel) => Wrap(
+                        alignment: WrapAlignment.end,
+                        children: [
+                          CustomText(
+                            text: formatDuration(getTotalTimeTaken(summary)),
+                            nunito: false,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w400,
+                            color: summaryStepTextColorGetter(
+                              getAcceptanceMarginStatus(
+                                getTotalTimeTaken(summary),
+                                recipe.totalDuration,
+                                getTotalAcceptanceMargin(
+                                  summary,
+                                  cookingLevel,
+                                  recipe,
+                                ),
+                              ),
+                            ),
+                            timer: true,
+                          ),
+                          CustomText(
+                            text: ' / ${formatDuration(recipe.totalDuration)}',
+                            nunito: false,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w400,
+                            color: TextColor.grey,
+                            timer: true,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 16,
+                  right: 8,
+                  top: 8,
+                  bottom: 8,
+                ),
+                child: Column(
+                  children: [
+                    InkWell(
+                      onTap: () => context.read<UserCubit>().onFavorite(recipe),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: const Color.fromRGBO(43, 46, 51, 1),
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3),
+                          child:
+                              BlocSelector<UserCubit, UserState, List<Recipe>>(
+                                selector: (state) => state.favorites,
+                                builder: (context, favorites) =>
+                                    SvgPicture.asset(
+                                      favorites.contains(recipe)
+                                          ? 'assets/icons/heart_filled.svg'
+                                          : 'assets/icons/heart_outline.svg',
+                                      width: 16,
+                                      height: 16,
+                                    ),
+                              ),
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: recipe.recipeType == RecipeType.meat
+                            ? const Color.fromRGBO(215, 98, 97, 0.1)
+                            : const Color.fromRGBO(74, 188, 150, 0.1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: recipe.recipeType == RecipeType.meat
+                            ? SvgPicture.asset(
+                                'assets/icons/meat.svg',
+                                width: 16,
+                                height: 16,
+                              )
+                            : SvgPicture.asset(
+                                'assets/icons/leaf.svg',
+                                width: 16,
+                                height: 16,
+                              ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -9,6 +9,7 @@ import 'package:chef_challenge_project/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:chef_challenge_project/reusable_functions.dart';
 
 @RoutePage()
 class RecipeChallengeSummaryScreen extends StatelessWidget {
@@ -51,14 +52,14 @@ class RecipeChallengeSummaryScreen extends StatelessWidget {
                 selector: (state) => state.cookingLevel!,
                 builder: (context, cookingLevel) => TotalCard(
                   totalDuration: recipe.totalDuration,
-                  totalTimeTaken: _getTotalTimeTaken(summary),
+                  totalTimeTaken: getTotalTimeTaken(summary),
                   acceptanceMarginDuration: recipe.totalAcceptableMargin(
                     cookingLevel,
                   ),
-                  acceptanceMarginStatus: _getAcceptanceMarginStatus(
-                    _getTotalTimeTaken(summary),
+                  acceptanceMarginStatus: getAcceptanceMarginStatus(
+                    getTotalTimeTaken(summary),
                     recipe.totalDuration,
-                    _getTotalAcceptanceMargin(summary, cookingLevel),
+                    getTotalAcceptanceMargin(summary, cookingLevel, recipe),
                   ),
                 ),
               ),
@@ -77,7 +78,7 @@ class RecipeChallengeSummaryScreen extends StatelessWidget {
         alignment: Alignment.centerRight,
         child: GestureDetector(
           onTap: () {
-            context.router.popUntilRouteWithName(ExploreRoute.name);
+            context.router.replaceAll([const NavigationBarRoute()]);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -108,49 +109,6 @@ class RecipeChallengeSummaryScreen extends StatelessWidget {
       centerTitle: true,
     );
   }
-
-  Duration _getTotalTimeTaken(List<SummaryStep> summary) {
-    Duration total = Duration.zero;
-    for (final summaryStep in summary) {
-      total += summaryStep.timeTaken;
-    }
-    return total;
-  }
-
-  Duration _getTotalAcceptanceMargin(
-    List<SummaryStep> summary,
-    Difficulty cookingLevel,
-  ) {
-    Duration acceptedMargin = Duration.zero;
-
-    for (final summaryStep in summary) {
-      acceptedMargin += Duration(
-        milliseconds:
-            (summaryStep.step.acceptableMarginDuration.inMilliseconds *
-                    recipe.difficultyFactor(cookingLevel))
-                .round(),
-      );
-    }
-    return acceptedMargin;
-  }
-
-  AcceptanceMarginStatus _getAcceptanceMarginStatus(
-    Duration totalElapsedTime,
-    Duration totalDuration,
-    Duration acceptedMargin,
-  ) {
-    final totalAcceptableTime = totalDuration + acceptedMargin;
-
-    if (totalElapsedTime > totalAcceptableTime) {
-      return AcceptanceMarginStatus.afterMargin;
-    }
-    if (totalElapsedTime >= totalDuration &&
-        totalElapsedTime <= totalAcceptableTime) {
-      return AcceptanceMarginStatus.withinMargin;
-    }
-
-    return AcceptanceMarginStatus.beforeMargin;
-  }
 }
 
 class SummaryStepCard extends StatelessWidget {
@@ -162,13 +120,6 @@ class SummaryStepCard extends StatelessWidget {
 
   final RecipeStep step;
   final SummaryStep summaryStep;
-
-  String _formatDuration(Duration d) {
-    String twoDigits(int n) => n.toString().padLeft(2, "0");
-    int minutes = d.inMinutes;
-    int seconds = d.inSeconds % 60;
-    return "$minutes:${twoDigits(seconds)}";
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -220,17 +171,17 @@ class SummaryStepCard extends StatelessWidget {
                   alignment: WrapAlignment.end,
                   children: [
                     CustomText(
-                      text: _formatDuration(summaryStep.timeTaken),
+                      text: formatDuration(summaryStep.timeTaken),
                       nunito: false,
                       fontSize: 24,
                       fontWeight: FontWeight.w400,
-                      color: _summaryStepTextColorGetter(
+                      color: summaryStepTextColorGetter(
                         summaryStep.marginStatus,
                       ),
                       timer: true,
                     ),
                     CustomText(
-                      text: ' / ${_formatDuration(step.duration)}',
+                      text: ' / ${formatDuration(step.duration)}',
                       nunito: false,
                       fontSize: 24,
                       fontWeight: FontWeight.w400,
@@ -245,17 +196,6 @@ class SummaryStepCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  TextColor _summaryStepTextColorGetter(AcceptanceMarginStatus marginStatus) {
-    switch (marginStatus) {
-      case AcceptanceMarginStatus.beforeMargin:
-        return TextColor.green;
-      case AcceptanceMarginStatus.withinMargin:
-        return TextColor.orange;
-      case AcceptanceMarginStatus.afterMargin:
-        return TextColor.red;
-    }
   }
 }
 
@@ -272,13 +212,6 @@ class TotalCard extends StatelessWidget {
   final Duration totalTimeTaken;
   final Duration acceptanceMarginDuration;
   final AcceptanceMarginStatus acceptanceMarginStatus;
-
-  String _formatDuration(Duration d) {
-    String twoDigits(int n) => n.toString().padLeft(2, "0");
-    int minutes = d.inMinutes;
-    int seconds = d.inSeconds % 60;
-    return "$minutes:${twoDigits(seconds)}";
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -308,7 +241,7 @@ class TotalCard extends StatelessWidget {
                   alignment: WrapAlignment.end,
                   children: [
                     CustomText(
-                      text: _formatDuration(acceptanceMarginDuration),
+                      text: formatDuration(acceptanceMarginDuration),
                       nunito: false,
                       fontSize: 24,
                       fontWeight: FontWeight.w400,
@@ -336,17 +269,15 @@ class TotalCard extends StatelessWidget {
                   alignment: WrapAlignment.end,
                   children: [
                     CustomText(
-                      text: _formatDuration(totalTimeTaken),
+                      text: formatDuration(totalTimeTaken),
                       nunito: false,
                       fontSize: 24,
                       fontWeight: FontWeight.w400,
-                      color: _summaryStepTextColorGetter(
-                        acceptanceMarginStatus,
-                      ),
+                      color: summaryStepTextColorGetter(acceptanceMarginStatus),
                       timer: true,
                     ),
                     CustomText(
-                      text: ' / ${_formatDuration(totalDuration)}',
+                      text: ' / ${formatDuration(totalDuration)}',
                       nunito: false,
                       fontSize: 24,
                       fontWeight: FontWeight.w400,
@@ -361,16 +292,5 @@ class TotalCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  TextColor _summaryStepTextColorGetter(AcceptanceMarginStatus marginStatus) {
-    switch (marginStatus) {
-      case AcceptanceMarginStatus.beforeMargin:
-        return TextColor.green;
-      case AcceptanceMarginStatus.withinMargin:
-        return TextColor.orange;
-      case AcceptanceMarginStatus.afterMargin:
-        return TextColor.red;
-    }
   }
 }

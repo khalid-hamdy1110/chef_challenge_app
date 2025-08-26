@@ -308,7 +308,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
               onTap: () => context.read<UserCubit>().setCookingLevel(
                 Difficulty.beginner,
               ),
-              child: difficultyTabletCard(
+              child: _difficultyTabletCard(
                 '🍳',
                 'Beginner',
                 'Just starting',
@@ -320,7 +320,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
               onTap: () => context.read<UserCubit>().setCookingLevel(
                 Difficulty.intermediate,
               ),
-              child: difficultyTabletCard(
+              child: _difficultyTabletCard(
                 '👨🏻‍🍳',
                 'Intermediate',
                 'Cooks often, knows a few recipes',
@@ -331,7 +331,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
             GestureDetector(
               onTap: () =>
                   context.read<UserCubit>().setCookingLevel(Difficulty.chef),
-              child: difficultyTabletCard(
+              child: _difficultyTabletCard(
                 '🔥',
                 'Chef',
                 'Let me cook!',
@@ -353,7 +353,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
         GestureDetector(
           onTap: () =>
               context.read<UserCubit>().setCookingLevel(Difficulty.beginner),
-          child: difficultyCard(
+          child: _difficultyCard(
             '🍳',
             'Beginner',
             'Just starting',
@@ -365,7 +365,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
           onTap: () => context.read<UserCubit>().setCookingLevel(
             Difficulty.intermediate,
           ),
-          child: difficultyCard(
+          child: _difficultyCard(
             '👨🏻‍🍳',
             'Intermediate',
             'Cooks often, knows a few recipes',
@@ -376,7 +376,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
         GestureDetector(
           onTap: () =>
               context.read<UserCubit>().setCookingLevel(Difficulty.chef),
-          child: difficultyCard(
+          child: _difficultyCard(
             '🔥',
             'Chef',
             'Let me cook!',
@@ -664,7 +664,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
     );
   }
 
-  AnimatedContainer difficultyCard(
+  AnimatedContainer _difficultyCard(
     String emoji,
     String label1,
     String label2,
@@ -759,7 +759,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
     );
   }
 
-  AnimatedContainer difficultyTabletCard(
+  AnimatedContainer _difficultyTabletCard(
     String emoji,
     String label1,
     String label2,

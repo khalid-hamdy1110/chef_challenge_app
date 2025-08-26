@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserState {
 
- Difficulty? get cookingLevel; String? get name; List<Recipe> get favorites;
+ Difficulty? get cookingLevel; String? get name; List<Recipe> get favorites; List<RecipeHistory> get history;
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $UserStateCopyWith<UserState> get copyWith => _$UserStateCopyWithImpl<UserState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserState&&(identical(other.cookingLevel, cookingLevel) || other.cookingLevel == cookingLevel)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.favorites, favorites));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserState&&(identical(other.cookingLevel, cookingLevel) || other.cookingLevel == cookingLevel)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.favorites, favorites)&&const DeepCollectionEquality().equals(other.history, history));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,cookingLevel,name,const DeepCollectionEquality().hash(favorites));
+int get hashCode => Object.hash(runtimeType,cookingLevel,name,const DeepCollectionEquality().hash(favorites),const DeepCollectionEquality().hash(history));
 
 @override
 String toString() {
-  return 'UserState(cookingLevel: $cookingLevel, name: $name, favorites: $favorites)';
+  return 'UserState(cookingLevel: $cookingLevel, name: $name, favorites: $favorites, history: $history)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $UserStateCopyWith<$Res>  {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) _then) = _$UserStateCopyWithImpl;
 @useResult
 $Res call({
- Difficulty? cookingLevel, String? name, List<Recipe> favorites
+ Difficulty? cookingLevel, String? name, List<Recipe> favorites, List<RecipeHistory> history
 });
 
 
@@ -62,12 +62,13 @@ class _$UserStateCopyWithImpl<$Res>
 
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? cookingLevel = freezed,Object? name = freezed,Object? favorites = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? cookingLevel = freezed,Object? name = freezed,Object? favorites = null,Object? history = null,}) {
   return _then(_self.copyWith(
 cookingLevel: freezed == cookingLevel ? _self.cookingLevel : cookingLevel // ignore: cast_nullable_to_non_nullable
 as Difficulty?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,favorites: null == favorites ? _self.favorites : favorites // ignore: cast_nullable_to_non_nullable
-as List<Recipe>,
+as List<Recipe>,history: null == history ? _self.history : history // ignore: cast_nullable_to_non_nullable
+as List<RecipeHistory>,
   ));
 }
 
@@ -152,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Difficulty? cookingLevel,  String? name,  List<Recipe> favorites)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Difficulty? cookingLevel,  String? name,  List<Recipe> favorites,  List<RecipeHistory> history)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserState() when $default != null:
-return $default(_that.cookingLevel,_that.name,_that.favorites);case _:
+return $default(_that.cookingLevel,_that.name,_that.favorites,_that.history);case _:
   return orElse();
 
 }
@@ -173,10 +174,10 @@ return $default(_that.cookingLevel,_that.name,_that.favorites);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Difficulty? cookingLevel,  String? name,  List<Recipe> favorites)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Difficulty? cookingLevel,  String? name,  List<Recipe> favorites,  List<RecipeHistory> history)  $default,) {final _that = this;
 switch (_that) {
 case _UserState():
-return $default(_that.cookingLevel,_that.name,_that.favorites);case _:
+return $default(_that.cookingLevel,_that.name,_that.favorites,_that.history);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -193,10 +194,10 @@ return $default(_that.cookingLevel,_that.name,_that.favorites);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Difficulty? cookingLevel,  String? name,  List<Recipe> favorites)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Difficulty? cookingLevel,  String? name,  List<Recipe> favorites,  List<RecipeHistory> history)?  $default,) {final _that = this;
 switch (_that) {
 case _UserState() when $default != null:
-return $default(_that.cookingLevel,_that.name,_that.favorites);case _:
+return $default(_that.cookingLevel,_that.name,_that.favorites,_that.history);case _:
   return null;
 
 }
@@ -208,7 +209,7 @@ return $default(_that.cookingLevel,_that.name,_that.favorites);case _:
 
 
 class _UserState implements UserState {
-  const _UserState({required this.cookingLevel, required this.name, required final  List<Recipe> favorites}): _favorites = favorites;
+  const _UserState({required this.cookingLevel, required this.name, required final  List<Recipe> favorites, required final  List<RecipeHistory> history}): _favorites = favorites,_history = history;
   
 
 @override final  Difficulty? cookingLevel;
@@ -218,6 +219,13 @@ class _UserState implements UserState {
   if (_favorites is EqualUnmodifiableListView) return _favorites;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_favorites);
+}
+
+ final  List<RecipeHistory> _history;
+@override List<RecipeHistory> get history {
+  if (_history is EqualUnmodifiableListView) return _history;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_history);
 }
 
 
@@ -231,16 +239,16 @@ _$UserStateCopyWith<_UserState> get copyWith => __$UserStateCopyWithImpl<_UserSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserState&&(identical(other.cookingLevel, cookingLevel) || other.cookingLevel == cookingLevel)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other._favorites, _favorites));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserState&&(identical(other.cookingLevel, cookingLevel) || other.cookingLevel == cookingLevel)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other._favorites, _favorites)&&const DeepCollectionEquality().equals(other._history, _history));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,cookingLevel,name,const DeepCollectionEquality().hash(_favorites));
+int get hashCode => Object.hash(runtimeType,cookingLevel,name,const DeepCollectionEquality().hash(_favorites),const DeepCollectionEquality().hash(_history));
 
 @override
 String toString() {
-  return 'UserState(cookingLevel: $cookingLevel, name: $name, favorites: $favorites)';
+  return 'UserState(cookingLevel: $cookingLevel, name: $name, favorites: $favorites, history: $history)';
 }
 
 
@@ -251,7 +259,7 @@ abstract mixin class _$UserStateCopyWith<$Res> implements $UserStateCopyWith<$Re
   factory _$UserStateCopyWith(_UserState value, $Res Function(_UserState) _then) = __$UserStateCopyWithImpl;
 @override @useResult
 $Res call({
- Difficulty? cookingLevel, String? name, List<Recipe> favorites
+ Difficulty? cookingLevel, String? name, List<Recipe> favorites, List<RecipeHistory> history
 });
 
 
@@ -268,12 +276,13 @@ class __$UserStateCopyWithImpl<$Res>
 
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? cookingLevel = freezed,Object? name = freezed,Object? favorites = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? cookingLevel = freezed,Object? name = freezed,Object? favorites = null,Object? history = null,}) {
   return _then(_UserState(
 cookingLevel: freezed == cookingLevel ? _self.cookingLevel : cookingLevel // ignore: cast_nullable_to_non_nullable
 as Difficulty?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,favorites: null == favorites ? _self._favorites : favorites // ignore: cast_nullable_to_non_nullable
-as List<Recipe>,
+as List<Recipe>,history: null == history ? _self._history : history // ignore: cast_nullable_to_non_nullable
+as List<RecipeHistory>,
   ));
 }
 

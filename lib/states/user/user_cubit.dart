@@ -15,9 +15,15 @@ class UserCubit extends Cubit<UserState> {
 
   void onFavorite(Recipe recipe) {
     if (state.favorites.contains(recipe)) {
-      emit(state.copyWith(favorites: List.from(state.favorites)..remove(recipe)));
+      emit(
+        state.copyWith(favorites: List.from(state.favorites)..remove(recipe)),
+      );
     } else {
       emit(state.copyWith(favorites: List.from(state.favorites)..add(recipe)));
     }
+  }
+
+  void onDoneWithRecipe(RecipeHistory recipeHistory) {
+    emit(state.copyWith(history: List.from(state.history)..add(recipeHistory)));
   }
 }

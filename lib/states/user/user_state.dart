@@ -9,9 +9,15 @@ abstract class UserState with _$UserState {
     required Difficulty? cookingLevel,
     required String? name,
     required List<Recipe> favorites,
+    required List<RecipeHistory> history,
   }) = _UserState;
 
   factory UserState.initial() {
-    return const UserState(cookingLevel: null, name: null, favorites: []);
+    return const UserState(
+      cookingLevel: null,
+      name: null,
+      favorites: [],
+      history: [],
+    );
   }
 }

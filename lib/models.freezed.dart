@@ -1135,4 +1135,288 @@ as String,
 
 }
 
+/// @nodoc
+mixin _$RecipeHistory {
+
+ Recipe get recipe; List<SummaryStep> get summary;
+/// Create a copy of RecipeHistory
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$RecipeHistoryCopyWith<RecipeHistory> get copyWith => _$RecipeHistoryCopyWithImpl<RecipeHistory>(this as RecipeHistory, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RecipeHistory&&(identical(other.recipe, recipe) || other.recipe == recipe)&&const DeepCollectionEquality().equals(other.summary, summary));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,recipe,const DeepCollectionEquality().hash(summary));
+
+@override
+String toString() {
+  return 'RecipeHistory(recipe: $recipe, summary: $summary)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $RecipeHistoryCopyWith<$Res>  {
+  factory $RecipeHistoryCopyWith(RecipeHistory value, $Res Function(RecipeHistory) _then) = _$RecipeHistoryCopyWithImpl;
+@useResult
+$Res call({
+ Recipe recipe, List<SummaryStep> summary
+});
+
+
+$RecipeCopyWith<$Res> get recipe;
+
+}
+/// @nodoc
+class _$RecipeHistoryCopyWithImpl<$Res>
+    implements $RecipeHistoryCopyWith<$Res> {
+  _$RecipeHistoryCopyWithImpl(this._self, this._then);
+
+  final RecipeHistory _self;
+  final $Res Function(RecipeHistory) _then;
+
+/// Create a copy of RecipeHistory
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? recipe = null,Object? summary = null,}) {
+  return _then(_self.copyWith(
+recipe: null == recipe ? _self.recipe : recipe // ignore: cast_nullable_to_non_nullable
+as Recipe,summary: null == summary ? _self.summary : summary // ignore: cast_nullable_to_non_nullable
+as List<SummaryStep>,
+  ));
+}
+/// Create a copy of RecipeHistory
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RecipeCopyWith<$Res> get recipe {
+  
+  return $RecipeCopyWith<$Res>(_self.recipe, (value) {
+    return _then(_self.copyWith(recipe: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [RecipeHistory].
+extension RecipeHistoryPatterns on RecipeHistory {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _RecipeHistory value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _RecipeHistory() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _RecipeHistory value)  $default,){
+final _that = this;
+switch (_that) {
+case _RecipeHistory():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _RecipeHistory value)?  $default,){
+final _that = this;
+switch (_that) {
+case _RecipeHistory() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Recipe recipe,  List<SummaryStep> summary)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _RecipeHistory() when $default != null:
+return $default(_that.recipe,_that.summary);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Recipe recipe,  List<SummaryStep> summary)  $default,) {final _that = this;
+switch (_that) {
+case _RecipeHistory():
+return $default(_that.recipe,_that.summary);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Recipe recipe,  List<SummaryStep> summary)?  $default,) {final _that = this;
+switch (_that) {
+case _RecipeHistory() when $default != null:
+return $default(_that.recipe,_that.summary);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _RecipeHistory implements RecipeHistory {
+  const _RecipeHistory({required this.recipe, required final  List<SummaryStep> summary}): _summary = summary;
+  
+
+@override final  Recipe recipe;
+ final  List<SummaryStep> _summary;
+@override List<SummaryStep> get summary {
+  if (_summary is EqualUnmodifiableListView) return _summary;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_summary);
+}
+
+
+/// Create a copy of RecipeHistory
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$RecipeHistoryCopyWith<_RecipeHistory> get copyWith => __$RecipeHistoryCopyWithImpl<_RecipeHistory>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RecipeHistory&&(identical(other.recipe, recipe) || other.recipe == recipe)&&const DeepCollectionEquality().equals(other._summary, _summary));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,recipe,const DeepCollectionEquality().hash(_summary));
+
+@override
+String toString() {
+  return 'RecipeHistory(recipe: $recipe, summary: $summary)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$RecipeHistoryCopyWith<$Res> implements $RecipeHistoryCopyWith<$Res> {
+  factory _$RecipeHistoryCopyWith(_RecipeHistory value, $Res Function(_RecipeHistory) _then) = __$RecipeHistoryCopyWithImpl;
+@override @useResult
+$Res call({
+ Recipe recipe, List<SummaryStep> summary
+});
+
+
+@override $RecipeCopyWith<$Res> get recipe;
+
+}
+/// @nodoc
+class __$RecipeHistoryCopyWithImpl<$Res>
+    implements _$RecipeHistoryCopyWith<$Res> {
+  __$RecipeHistoryCopyWithImpl(this._self, this._then);
+
+  final _RecipeHistory _self;
+  final $Res Function(_RecipeHistory) _then;
+
+/// Create a copy of RecipeHistory
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? recipe = null,Object? summary = null,}) {
+  return _then(_RecipeHistory(
+recipe: null == recipe ? _self.recipe : recipe // ignore: cast_nullable_to_non_nullable
+as Recipe,summary: null == summary ? _self._summary : summary // ignore: cast_nullable_to_non_nullable
+as List<SummaryStep>,
+  ));
+}
+
+/// Create a copy of RecipeHistory
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RecipeCopyWith<$Res> get recipe {
+  
+  return $RecipeCopyWith<$Res>(_self.recipe, (value) {
+    return _then(_self.copyWith(recipe: value));
+  });
+}
+}
+
 // dart format on
