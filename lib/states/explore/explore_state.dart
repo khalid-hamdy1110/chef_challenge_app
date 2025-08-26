@@ -47,8 +47,8 @@ abstract class ExploreState with _$ExploreState {
             description:
                 'Halve tomatoes, mince garlic, chop parsley. Crack eggs and whisk lightly.',
             stepType: StepType.prep,
-            duration: Duration(minutes: 2, seconds: 30),
-            acceptableMarginDuration: Duration(minutes: 1),
+            duration: Duration(seconds: 45),
+            acceptableMarginDuration: Duration(seconds: 30),
             comment: 'Don’t over-whisk; a few streaks of white are fine.',
           ),
           RecipeStep(
@@ -56,17 +56,17 @@ abstract class ExploreState with _$ExploreState {
             name: 'Toast bread',
             description: 'Toast sourdough to your liking. Keep warm.',
             stepType: StepType.cooking,
-            duration: Duration(minutes: 2, seconds: 30),
-            acceptableMarginDuration: Duration(minutes: 1),
+            duration: Duration(minutes: 1, seconds: 15),
+            acceptableMarginDuration: Duration(seconds: 45),
           ),
           RecipeStep(
             number: 3,
             name: 'Tomatoes & garlic',
             description:
-                'Heat olive oil medium-high. Sauté tomatoes 60–90 sec; add garlic 30 sec until fragrant.',
+                'Heat olive oil medium-high. Sauté tomatoes ~45 sec; add garlic ~30–45 sec until fragrant.',
             stepType: StepType.cooking,
-            duration: Duration(minutes: 2),
-            acceptableMarginDuration: Duration(minutes: 1),
+            duration: Duration(seconds: 45),
+            acceptableMarginDuration: Duration(seconds: 30),
             comment: 'Pull early if garlic browns too fast.',
           ),
           RecipeStep(
@@ -75,8 +75,8 @@ abstract class ExploreState with _$ExploreState {
             description:
                 'Lower heat to medium-low, add butter, then eggs. Stir constantly until barely set and glossy (~90 sec).',
             stepType: StepType.cooking,
-            duration: Duration(minutes: 2),
-            acceptableMarginDuration: Duration(minutes: 1),
+            duration: Duration(minutes: 1, seconds: 30),
+            acceptableMarginDuration: Duration(seconds: 45),
           ),
           RecipeStep(
             number: 5,
@@ -84,8 +84,8 @@ abstract class ExploreState with _$ExploreState {
             description:
                 'Top toast with eggs and tomatoes. Finish with parsley and a crack of black pepper; serve immediately.',
             stepType: StepType.prep,
-            duration: Duration(minutes: 1),
-            acceptableMarginDuration: Duration(seconds: 30),
+            duration: Duration(seconds: 45),
+            acceptableMarginDuration: Duration(seconds: 20),
           ),
         ],
       ),
