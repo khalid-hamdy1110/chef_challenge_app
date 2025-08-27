@@ -475,12 +475,15 @@ class TimelineBar extends StatelessWidget {
                     children: [
                       WidgetSpan(
                         alignment: PlaceholderAlignment.middle,
-                        child: Container(
-                          width: 8,
-                          height: 8,
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(35, 157, 102, 1),
-                            borderRadius: BorderRadius.circular(100),
+                        child: Transform.translate(
+                          offset: const Offset(0, 2),
+                          child: Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              color: const Color.fromRGBO(35, 157, 102, 1),
+                              borderRadius: BorderRadius.circular(100),
+                            ),
                           ),
                         ),
                       ),
@@ -508,12 +511,15 @@ class TimelineBar extends StatelessWidget {
                     children: [
                       WidgetSpan(
                         alignment: PlaceholderAlignment.middle,
-                        child: Container(
-                          width: 8,
-                          height: 8,
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(219, 122, 43, 1),
-                            borderRadius: BorderRadius.circular(100),
+                        child: Transform.translate(
+                          offset: const Offset(0, 2),
+                          child: Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              color: const Color.fromRGBO(219, 122, 43, 1),
+                              borderRadius: BorderRadius.circular(100),
+                            ),
                           ),
                         ),
                       ),
@@ -781,12 +787,15 @@ class LiveTimelineBar extends StatelessWidget {
                   children: [
                     WidgetSpan(
                       alignment: PlaceholderAlignment.middle,
-                      child: Container(
-                        width: 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(35, 157, 102, 1),
-                          borderRadius: BorderRadius.circular(100),
+                      child: Transform.translate(
+                        offset: const Offset(0, 2),
+                        child: Container(
+                          width: 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(35, 157, 102, 1),
+                            borderRadius: BorderRadius.circular(100),
+                          ),
                         ),
                       ),
                     ),
@@ -814,12 +823,15 @@ class LiveTimelineBar extends StatelessWidget {
                   children: [
                     WidgetSpan(
                       alignment: PlaceholderAlignment.middle,
-                      child: Container(
-                        width: 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(219, 122, 43, 1),
-                          borderRadius: BorderRadius.circular(100),
+                      child: Transform.translate(
+                        offset: const Offset(0, 2),
+                        child: Container(
+                          width: 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(219, 122, 43, 1),
+                            borderRadius: BorderRadius.circular(100),
+                          ),
                         ),
                       ),
                     ),
