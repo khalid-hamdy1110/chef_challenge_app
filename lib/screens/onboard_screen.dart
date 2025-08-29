@@ -127,35 +127,55 @@ class _OnboardScreenState extends State<OnboardScreen> {
                           ),
                         ),
                       ),
-                      const Spacer(),
                       SizedBox(
-                        height: 700,
+                        height: MediaQuery.of(context).size.height * 0.8,
                         child: PageView(
                           controller: _pageController,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: 20,
-                                left: 16,
-                                right: 16,
-                              ),
-                              child: _welcomePage(context),
+                            CustomScrollView(
+                              slivers: [
+                                SliverFillRemaining(
+                                  hasScrollBody: false,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 20,
+                                      left: 16,
+                                      right: 16,
+                                    ),
+                                    child: _welcomePage(context),
+                                  ),
+                                ),
+                              ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: 20,
-                                left: 16,
-                                right: 16,
-                              ),
-                              child: _detailsPage(),
+                            CustomScrollView(
+                              slivers: [
+                                SliverFillRemaining(
+                                  hasScrollBody: false,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 20,
+                                      left: 16,
+                                      right: 16,
+                                    ),
+                                    child: _detailsPage(),
+                                  ),
+                                ),
+                              ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: 20,
-                                left: 16,
-                                right: 16,
-                              ),
-                              child: _cookingLevelPage(context),
+                            CustomScrollView(
+                              slivers: [
+                                SliverFillRemaining(
+                                  hasScrollBody: false,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 20,
+                                      left: 16,
+                                      right: 16,
+                                    ),
+                                    child: _cookingLevelPage(context),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -164,7 +184,6 @@ class _OnboardScreenState extends State<OnboardScreen> {
                         padding: const EdgeInsets.only(top: 18),
                         child: _pageIndicator(),
                       ),
-                      const Spacer(),
                     ],
                   ),
                 ),
@@ -236,7 +255,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
               tablet: _tabletCookingLevelPageCards(context, data),
             ),
             ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 500),
+              constraints: const BoxConstraints(maxWidth: 500, minHeight: 120),
               child: Column(
                 children: [
                   Container(
@@ -500,7 +519,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
           height: getAdaptiveValue(context: context, mobile: 320, tablet: 430),
         ),
         ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 528),
+          constraints: const BoxConstraints(maxWidth: 528, minHeight: 110),
           child: Column(
             children: [
               Text.rich(
@@ -526,7 +545,6 @@ class _OnboardScreenState extends State<OnboardScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
               const CustomText(
                 text:
                     'Turn cooking into an exciting challenge. Race against time, improve your skills, and become a kitchen champion!',
