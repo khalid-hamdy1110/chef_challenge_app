@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-enum TextColor { white, grey, orange, green, red }
+enum TextColor { white, grey, orange, green, red, amber }
 
 class CustomText extends StatelessWidget {
   const CustomText({
@@ -67,6 +67,8 @@ class CustomText extends StatelessWidget {
         return const Color.fromRGBO(35, 157, 102, 1);
       case TextColor.red:
         return const Color.fromRGBO(221, 76, 76, 1);
+      case TextColor.amber:
+        return Colors.amber;
     }
   }
 

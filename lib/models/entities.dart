@@ -1,8 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'models.freezed.dart';
-
-enum Tag { chicken, vegetables, pasta, rice, eggs, meat, potatoes, sauce }
+part 'entities.freezed.dart';
 
 enum RecipeType { meat, vegetarian }
 
@@ -45,7 +43,7 @@ abstract class SummaryStep with _$SummaryStep {
 abstract class Recipe with _$Recipe {
   const factory Recipe({
     required String name,
-    required List<Tag> tags,
+    required List<String> tags,
     required RecipeType recipeType,
     required Difficulty difficulty,
     required String description,

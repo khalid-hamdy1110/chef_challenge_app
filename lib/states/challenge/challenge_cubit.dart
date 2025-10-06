@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:chef_challenge_project/models.dart';
+import 'package:chef_challenge_project/models/entities.dart';
 import 'package:chef_challenge_project/states/challenge/challenge_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,4 +1,4 @@
-import 'package:chef_challenge_project/models.dart';
+import 'package:chef_challenge_project/models/entities.dart';
 import 'package:chef_challenge_project/widgets/custom_text.dart';
 
 String formatDuration(Duration d) {

@@ -1,4 +1,4 @@
-import 'package:chef_challenge_project/models.dart';
+import 'package:chef_challenge_project/models/entities.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'challenge_state.freezed.dart';

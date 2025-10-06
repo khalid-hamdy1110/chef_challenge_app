@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:chef_challenge_project/models.dart';
+import 'package:chef_challenge_project/models/entities.dart';
 import 'package:chef_challenge_project/route_config/app_router.gr.dart';
 import 'package:chef_challenge_project/states/user/user_cubit.dart';
 import 'package:chef_challenge_project/states/user/user_state.dart';
@@ -36,7 +36,7 @@ class RecipeGridCard extends StatelessWidget {
                   children: [
                     AspectRatio(
                       aspectRatio: 1,
-                      child: Image.asset(recipe.imageUrl, fit: BoxFit.cover),
+                      child: Image.network(recipe.imageUrl, fit: BoxFit.cover),
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
@@ -149,7 +149,7 @@ class RecipeGridCard extends StatelessWidget {
                       Wrap(
                         children: [
                           ...List.generate(
-                            recipe.tags.length,
+                            recipe.tags.length.clamp(0, 4),
                             (i) => TagPill(recipe: recipe, index: i),
                           ),
                         ],
@@ -243,7 +243,7 @@ class RecipeCard extends StatelessWidget {
                   children: [
                     AspectRatio(
                       aspectRatio: 1,
-                      child: Image.asset(recipe.imageUrl, fit: BoxFit.cover),
+                      child: Image.network(recipe.imageUrl, fit: BoxFit.cover),
                     ),
                     Align(
                       alignment: Alignment.centerRight,
@@ -283,7 +283,7 @@ class RecipeCard extends StatelessWidget {
                     Wrap(
                       children: [
                         ...List.generate(
-                          recipe.tags.length,
+                          recipe.tags.length.clamp(0, 4),
                           (i) => TagPill(recipe: recipe, index: i),
                         ),
                       ],
@@ -431,8 +431,8 @@ class TagPill extends StatelessWidget {
       ),
       child: CustomText(
         text:
-            recipe.tags[index].name[0].toUpperCase() +
-            recipe.tags[index].name.substring(1),
+            recipe.tags[index][0].toUpperCase() +
+            recipe.tags[index].substring(1),
         nunito: true,
         fontSize: 9,
         fontWeight: FontWeight.w500,
@@ -952,7 +952,7 @@ class RecipeHistoryCard extends StatelessWidget {
                   children: [
                     AspectRatio(
                       aspectRatio: 1,
-                      child: Image.asset(recipe.imageUrl, fit: BoxFit.cover),
+                      child: Image.network(recipe.imageUrl, fit: BoxFit.cover),
                     ),
                     Align(
                       alignment: Alignment.centerRight,

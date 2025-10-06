@@ -10,7 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i10;
-import 'package:chef_challenge_project/models.dart' as _i12;
+import 'package:chef_challenge_project/models/entities.dart' as _i12;
 import 'package:chef_challenge_project/screens/explore_screen.dart' as _i1;
 import 'package:chef_challenge_project/screens/explore_shell_screen.dart'
     as _i2;

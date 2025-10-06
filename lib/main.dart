@@ -1,9 +1,13 @@
+import 'package:chef_challenge_project/data/recipe_api_service.dart';
 import 'package:chef_challenge_project/route_config/app_router.dart';
 import 'package:chef_challenge_project/states/user/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: '.env');
+  RecipeApiService().getRecipes();
   runApp(const MainApp());
 }
 

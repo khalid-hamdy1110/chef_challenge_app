@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'models.dart';
+part of 'entities.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -833,7 +833,7 @@ $RecipeStepCopyWith<$Res> get step {
 /// @nodoc
 mixin _$Recipe {
 
- String get name; List<Tag> get tags; RecipeType get recipeType; Difficulty get difficulty; String get description; List<Ingredient> get ingredients; int get calories; int get protein; int get carbs; List<RecipeStep> get steps; String get imageUrl;
+ String get name; List<String> get tags; RecipeType get recipeType; Difficulty get difficulty; String get description; List<Ingredient> get ingredients; int get calories; int get protein; int get carbs; List<RecipeStep> get steps; String get imageUrl;
 /// Create a copy of Recipe
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -864,7 +864,7 @@ abstract mixin class $RecipeCopyWith<$Res>  {
   factory $RecipeCopyWith(Recipe value, $Res Function(Recipe) _then) = _$RecipeCopyWithImpl;
 @useResult
 $Res call({
- String name, List<Tag> tags, RecipeType recipeType, Difficulty difficulty, String description, List<Ingredient> ingredients, int calories, int protein, int carbs, List<RecipeStep> steps, String imageUrl
+ String name, List<String> tags, RecipeType recipeType, Difficulty difficulty, String description, List<Ingredient> ingredients, int calories, int protein, int carbs, List<RecipeStep> steps, String imageUrl
 });
 
 
@@ -885,7 +885,7 @@ class _$RecipeCopyWithImpl<$Res>
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,tags: null == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
-as List<Tag>,recipeType: null == recipeType ? _self.recipeType : recipeType // ignore: cast_nullable_to_non_nullable
+as List<String>,recipeType: null == recipeType ? _self.recipeType : recipeType // ignore: cast_nullable_to_non_nullable
 as RecipeType,difficulty: null == difficulty ? _self.difficulty : difficulty // ignore: cast_nullable_to_non_nullable
 as Difficulty,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,ingredients: null == ingredients ? _self.ingredients : ingredients // ignore: cast_nullable_to_non_nullable
@@ -979,7 +979,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  List<Tag> tags,  RecipeType recipeType,  Difficulty difficulty,  String description,  List<Ingredient> ingredients,  int calories,  int protein,  int carbs,  List<RecipeStep> steps,  String imageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  List<String> tags,  RecipeType recipeType,  Difficulty difficulty,  String description,  List<Ingredient> ingredients,  int calories,  int protein,  int carbs,  List<RecipeStep> steps,  String imageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Recipe() when $default != null:
 return $default(_that.name,_that.tags,_that.recipeType,_that.difficulty,_that.description,_that.ingredients,_that.calories,_that.protein,_that.carbs,_that.steps,_that.imageUrl);case _:
@@ -1000,7 +1000,7 @@ return $default(_that.name,_that.tags,_that.recipeType,_that.difficulty,_that.de
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  List<Tag> tags,  RecipeType recipeType,  Difficulty difficulty,  String description,  List<Ingredient> ingredients,  int calories,  int protein,  int carbs,  List<RecipeStep> steps,  String imageUrl)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  List<String> tags,  RecipeType recipeType,  Difficulty difficulty,  String description,  List<Ingredient> ingredients,  int calories,  int protein,  int carbs,  List<RecipeStep> steps,  String imageUrl)  $default,) {final _that = this;
 switch (_that) {
 case _Recipe():
 return $default(_that.name,_that.tags,_that.recipeType,_that.difficulty,_that.description,_that.ingredients,_that.calories,_that.protein,_that.carbs,_that.steps,_that.imageUrl);case _:
@@ -1020,7 +1020,7 @@ return $default(_that.name,_that.tags,_that.recipeType,_that.difficulty,_that.de
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  List<Tag> tags,  RecipeType recipeType,  Difficulty difficulty,  String description,  List<Ingredient> ingredients,  int calories,  int protein,  int carbs,  List<RecipeStep> steps,  String imageUrl)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  List<String> tags,  RecipeType recipeType,  Difficulty difficulty,  String description,  List<Ingredient> ingredients,  int calories,  int protein,  int carbs,  List<RecipeStep> steps,  String imageUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _Recipe() when $default != null:
 return $default(_that.name,_that.tags,_that.recipeType,_that.difficulty,_that.description,_that.ingredients,_that.calories,_that.protein,_that.carbs,_that.steps,_that.imageUrl);case _:
@@ -1035,12 +1035,12 @@ return $default(_that.name,_that.tags,_that.recipeType,_that.difficulty,_that.de
 
 
 class _Recipe implements Recipe {
-  const _Recipe({required this.name, required final  List<Tag> tags, required this.recipeType, required this.difficulty, required this.description, required final  List<Ingredient> ingredients, required this.calories, required this.protein, required this.carbs, required final  List<RecipeStep> steps, required this.imageUrl}): _tags = tags,_ingredients = ingredients,_steps = steps;
+  const _Recipe({required this.name, required final  List<String> tags, required this.recipeType, required this.difficulty, required this.description, required final  List<Ingredient> ingredients, required this.calories, required this.protein, required this.carbs, required final  List<RecipeStep> steps, required this.imageUrl}): _tags = tags,_ingredients = ingredients,_steps = steps;
   
 
 @override final  String name;
- final  List<Tag> _tags;
-@override List<Tag> get tags {
+ final  List<String> _tags;
+@override List<String> get tags {
   if (_tags is EqualUnmodifiableListView) return _tags;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_tags);
@@ -1098,7 +1098,7 @@ abstract mixin class _$RecipeCopyWith<$Res> implements $RecipeCopyWith<$Res> {
   factory _$RecipeCopyWith(_Recipe value, $Res Function(_Recipe) _then) = __$RecipeCopyWithImpl;
 @override @useResult
 $Res call({
- String name, List<Tag> tags, RecipeType recipeType, Difficulty difficulty, String description, List<Ingredient> ingredients, int calories, int protein, int carbs, List<RecipeStep> steps, String imageUrl
+ String name, List<String> tags, RecipeType recipeType, Difficulty difficulty, String description, List<Ingredient> ingredients, int calories, int protein, int carbs, List<RecipeStep> steps, String imageUrl
 });
 
 
@@ -1119,7 +1119,7 @@ class __$RecipeCopyWithImpl<$Res>
   return _then(_Recipe(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,tags: null == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
-as List<Tag>,recipeType: null == recipeType ? _self.recipeType : recipeType // ignore: cast_nullable_to_non_nullable
+as List<String>,recipeType: null == recipeType ? _self.recipeType : recipeType // ignore: cast_nullable_to_non_nullable
 as RecipeType,difficulty: null == difficulty ? _self.difficulty : difficulty // ignore: cast_nullable_to_non_nullable
 as Difficulty,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,ingredients: null == ingredients ? _self._ingredients : ingredients // ignore: cast_nullable_to_non_nullable

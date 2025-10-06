@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:chef_challenge_project/models.dart';
+import 'package:chef_challenge_project/models/entities.dart';
 import 'package:chef_challenge_project/states/user/user_cubit.dart';
 import 'package:chef_challenge_project/states/user/user_state.dart';
 import 'package:chef_challenge_project/widgets/custom_text.dart';

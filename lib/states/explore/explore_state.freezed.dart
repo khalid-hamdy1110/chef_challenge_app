@@ -14,77 +14,30 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ExploreState {
 
- Recipe? get recipeOfTheDay; bool get listView; List<Recipe> get recipes; List<Recipe> get filteredRecipe; List<Tag> get selectedTags;
-/// Create a copy of ExploreState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$ExploreStateCopyWith<ExploreState> get copyWith => _$ExploreStateCopyWithImpl<ExploreState>(this as ExploreState, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExploreState&&(identical(other.recipeOfTheDay, recipeOfTheDay) || other.recipeOfTheDay == recipeOfTheDay)&&(identical(other.listView, listView) || other.listView == listView)&&const DeepCollectionEquality().equals(other.recipes, recipes)&&const DeepCollectionEquality().equals(other.filteredRecipe, filteredRecipe)&&const DeepCollectionEquality().equals(other.selectedTags, selectedTags));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExploreState);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,recipeOfTheDay,listView,const DeepCollectionEquality().hash(recipes),const DeepCollectionEquality().hash(filteredRecipe),const DeepCollectionEquality().hash(selectedTags));
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ExploreState(recipeOfTheDay: $recipeOfTheDay, listView: $listView, recipes: $recipes, filteredRecipe: $filteredRecipe, selectedTags: $selectedTags)';
+  return 'ExploreState()';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $ExploreStateCopyWith<$Res>  {
-  factory $ExploreStateCopyWith(ExploreState value, $Res Function(ExploreState) _then) = _$ExploreStateCopyWithImpl;
-@useResult
-$Res call({
- Recipe? recipeOfTheDay, bool listView, List<Recipe> recipes, List<Recipe> filteredRecipe, List<Tag> selectedTags
-});
-
-
-$RecipeCopyWith<$Res>? get recipeOfTheDay;
-
-}
-/// @nodoc
-class _$ExploreStateCopyWithImpl<$Res>
-    implements $ExploreStateCopyWith<$Res> {
-  _$ExploreStateCopyWithImpl(this._self, this._then);
-
-  final ExploreState _self;
-  final $Res Function(ExploreState) _then;
-
-/// Create a copy of ExploreState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? recipeOfTheDay = freezed,Object? listView = null,Object? recipes = null,Object? filteredRecipe = null,Object? selectedTags = null,}) {
-  return _then(_self.copyWith(
-recipeOfTheDay: freezed == recipeOfTheDay ? _self.recipeOfTheDay : recipeOfTheDay // ignore: cast_nullable_to_non_nullable
-as Recipe?,listView: null == listView ? _self.listView : listView // ignore: cast_nullable_to_non_nullable
-as bool,recipes: null == recipes ? _self.recipes : recipes // ignore: cast_nullable_to_non_nullable
-as List<Recipe>,filteredRecipe: null == filteredRecipe ? _self.filteredRecipe : filteredRecipe // ignore: cast_nullable_to_non_nullable
-as List<Recipe>,selectedTags: null == selectedTags ? _self.selectedTags : selectedTags // ignore: cast_nullable_to_non_nullable
-as List<Tag>,
-  ));
-}
-/// Create a copy of ExploreState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$RecipeCopyWith<$Res>? get recipeOfTheDay {
-    if (_self.recipeOfTheDay == null) {
-    return null;
-  }
-
-  return $RecipeCopyWith<$Res>(_self.recipeOfTheDay!, (value) {
-    return _then(_self.copyWith(recipeOfTheDay: value));
-  });
-}
+class $ExploreStateCopyWith<$Res>  {
+$ExploreStateCopyWith(ExploreState _, $Res Function(ExploreState) __);
 }
 
 
@@ -102,11 +55,14 @@ extension ExploreStatePatterns on ExploreState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ExploreState value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( ExploreInitial value)?  initial,TResult Function( ExploreLoading value)?  loading,TResult Function( ExploreSuccess value)?  success,TResult Function( ExploreFailure value)?  failure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _ExploreState() when $default != null:
-return $default(_that);case _:
+case ExploreInitial() when initial != null:
+return initial(_that);case ExploreLoading() when loading != null:
+return loading(_that);case ExploreSuccess() when success != null:
+return success(_that);case ExploreFailure() when failure != null:
+return failure(_that);case _:
   return orElse();
 
 }
@@ -124,14 +80,14 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ExploreState value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( ExploreInitial value)  initial,required TResult Function( ExploreLoading value)  loading,required TResult Function( ExploreSuccess value)  success,required TResult Function( ExploreFailure value)  failure,}){
 final _that = this;
 switch (_that) {
-case _ExploreState():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+case ExploreInitial():
+return initial(_that);case ExploreLoading():
+return loading(_that);case ExploreSuccess():
+return success(_that);case ExploreFailure():
+return failure(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -145,11 +101,14 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ExploreState value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( ExploreInitial value)?  initial,TResult? Function( ExploreLoading value)?  loading,TResult? Function( ExploreSuccess value)?  success,TResult? Function( ExploreFailure value)?  failure,}){
 final _that = this;
 switch (_that) {
-case _ExploreState() when $default != null:
-return $default(_that);case _:
+case ExploreInitial() when initial != null:
+return initial(_that);case ExploreLoading() when loading != null:
+return loading(_that);case ExploreSuccess() when success != null:
+return success(_that);case ExploreFailure() when failure != null:
+return failure(_that);case _:
   return null;
 
 }
@@ -166,10 +125,13 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Recipe? recipeOfTheDay,  bool listView,  List<Recipe> recipes,  List<Recipe> filteredRecipe,  List<Tag> selectedTags)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<Recipe> recipes,  List<Recipe> filteredRecipes,  List<String> allTags,  Recipe? recipeOfTheDay,  bool listView,  List<String> selectedTags)?  success,TResult Function( ApiError error)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _ExploreState() when $default != null:
-return $default(_that.recipeOfTheDay,_that.listView,_that.recipes,_that.filteredRecipe,_that.selectedTags);case _:
+case ExploreInitial() when initial != null:
+return initial();case ExploreLoading() when loading != null:
+return loading();case ExploreSuccess() when success != null:
+return success(_that.recipes,_that.filteredRecipes,_that.allTags,_that.recipeOfTheDay,_that.listView,_that.selectedTags);case ExploreFailure() when failure != null:
+return failure(_that.error);case _:
   return orElse();
 
 }
@@ -187,13 +149,13 @@ return $default(_that.recipeOfTheDay,_that.listView,_that.recipes,_that.filtered
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Recipe? recipeOfTheDay,  bool listView,  List<Recipe> recipes,  List<Recipe> filteredRecipe,  List<Tag> selectedTags)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<Recipe> recipes,  List<Recipe> filteredRecipes,  List<String> allTags,  Recipe? recipeOfTheDay,  bool listView,  List<String> selectedTags)  success,required TResult Function( ApiError error)  failure,}) {final _that = this;
 switch (_that) {
-case _ExploreState():
-return $default(_that.recipeOfTheDay,_that.listView,_that.recipes,_that.filteredRecipe,_that.selectedTags);case _:
-  throw StateError('Unexpected subclass');
-
-}
+case ExploreInitial():
+return initial();case ExploreLoading():
+return loading();case ExploreSuccess():
+return success(_that.recipes,_that.filteredRecipes,_that.allTags,_that.recipeOfTheDay,_that.listView,_that.selectedTags);case ExploreFailure():
+return failure(_that.error);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -207,10 +169,13 @@ return $default(_that.recipeOfTheDay,_that.listView,_that.recipes,_that.filtered
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Recipe? recipeOfTheDay,  bool listView,  List<Recipe> recipes,  List<Recipe> filteredRecipe,  List<Tag> selectedTags)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<Recipe> recipes,  List<Recipe> filteredRecipes,  List<String> allTags,  Recipe? recipeOfTheDay,  bool listView,  List<String> selectedTags)?  success,TResult? Function( ApiError error)?  failure,}) {final _that = this;
 switch (_that) {
-case _ExploreState() when $default != null:
-return $default(_that.recipeOfTheDay,_that.listView,_that.recipes,_that.filteredRecipe,_that.selectedTags);case _:
+case ExploreInitial() when initial != null:
+return initial();case ExploreLoading() when loading != null:
+return loading();case ExploreSuccess() when success != null:
+return success(_that.recipes,_that.filteredRecipes,_that.allTags,_that.recipeOfTheDay,_that.listView,_that.selectedTags);case ExploreFailure() when failure != null:
+return failure(_that.error);case _:
   return null;
 
 }
@@ -221,28 +186,99 @@ return $default(_that.recipeOfTheDay,_that.listView,_that.recipes,_that.filtered
 /// @nodoc
 
 
-class _ExploreState implements ExploreState {
-  const _ExploreState({required this.recipeOfTheDay, required this.listView, required final  List<Recipe> recipes, required final  List<Recipe> filteredRecipe, required final  List<Tag> selectedTags}): _recipes = recipes,_filteredRecipe = filteredRecipe,_selectedTags = selectedTags;
+class ExploreInitial implements ExploreState {
+  const ExploreInitial();
   
 
-@override final  Recipe? recipeOfTheDay;
-@override final  bool listView;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExploreInitial);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ExploreState.initial()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class ExploreLoading implements ExploreState {
+  const ExploreLoading();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExploreLoading);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ExploreState.loading()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class ExploreSuccess implements ExploreState {
+  const ExploreSuccess({required final  List<Recipe> recipes, required final  List<Recipe> filteredRecipes, required final  List<String> allTags, this.recipeOfTheDay, this.listView = true, final  List<String> selectedTags = const <String>[]}): _recipes = recipes,_filteredRecipes = filteredRecipes,_allTags = allTags,_selectedTags = selectedTags;
+  
+
  final  List<Recipe> _recipes;
-@override List<Recipe> get recipes {
+ List<Recipe> get recipes {
   if (_recipes is EqualUnmodifiableListView) return _recipes;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_recipes);
 }
 
- final  List<Recipe> _filteredRecipe;
-@override List<Recipe> get filteredRecipe {
-  if (_filteredRecipe is EqualUnmodifiableListView) return _filteredRecipe;
+ final  List<Recipe> _filteredRecipes;
+ List<Recipe> get filteredRecipes {
+  if (_filteredRecipes is EqualUnmodifiableListView) return _filteredRecipes;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_filteredRecipe);
+  return EqualUnmodifiableListView(_filteredRecipes);
 }
 
- final  List<Tag> _selectedTags;
-@override List<Tag> get selectedTags {
+ final  List<String> _allTags;
+ List<String> get allTags {
+  if (_allTags is EqualUnmodifiableListView) return _allTags;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_allTags);
+}
+
+ final  Recipe? recipeOfTheDay;
+@JsonKey() final  bool listView;
+ final  List<String> _selectedTags;
+@JsonKey() List<String> get selectedTags {
   if (_selectedTags is EqualUnmodifiableListView) return _selectedTags;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_selectedTags);
@@ -251,59 +287,60 @@ class _ExploreState implements ExploreState {
 
 /// Create a copy of ExploreState
 /// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
+@JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$ExploreStateCopyWith<_ExploreState> get copyWith => __$ExploreStateCopyWithImpl<_ExploreState>(this, _$identity);
+$ExploreSuccessCopyWith<ExploreSuccess> get copyWith => _$ExploreSuccessCopyWithImpl<ExploreSuccess>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExploreState&&(identical(other.recipeOfTheDay, recipeOfTheDay) || other.recipeOfTheDay == recipeOfTheDay)&&(identical(other.listView, listView) || other.listView == listView)&&const DeepCollectionEquality().equals(other._recipes, _recipes)&&const DeepCollectionEquality().equals(other._filteredRecipe, _filteredRecipe)&&const DeepCollectionEquality().equals(other._selectedTags, _selectedTags));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExploreSuccess&&const DeepCollectionEquality().equals(other._recipes, _recipes)&&const DeepCollectionEquality().equals(other._filteredRecipes, _filteredRecipes)&&const DeepCollectionEquality().equals(other._allTags, _allTags)&&(identical(other.recipeOfTheDay, recipeOfTheDay) || other.recipeOfTheDay == recipeOfTheDay)&&(identical(other.listView, listView) || other.listView == listView)&&const DeepCollectionEquality().equals(other._selectedTags, _selectedTags));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,recipeOfTheDay,listView,const DeepCollectionEquality().hash(_recipes),const DeepCollectionEquality().hash(_filteredRecipe),const DeepCollectionEquality().hash(_selectedTags));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_recipes),const DeepCollectionEquality().hash(_filteredRecipes),const DeepCollectionEquality().hash(_allTags),recipeOfTheDay,listView,const DeepCollectionEquality().hash(_selectedTags));
 
 @override
 String toString() {
-  return 'ExploreState(recipeOfTheDay: $recipeOfTheDay, listView: $listView, recipes: $recipes, filteredRecipe: $filteredRecipe, selectedTags: $selectedTags)';
+  return 'ExploreState.success(recipes: $recipes, filteredRecipes: $filteredRecipes, allTags: $allTags, recipeOfTheDay: $recipeOfTheDay, listView: $listView, selectedTags: $selectedTags)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$ExploreStateCopyWith<$Res> implements $ExploreStateCopyWith<$Res> {
-  factory _$ExploreStateCopyWith(_ExploreState value, $Res Function(_ExploreState) _then) = __$ExploreStateCopyWithImpl;
-@override @useResult
+abstract mixin class $ExploreSuccessCopyWith<$Res> implements $ExploreStateCopyWith<$Res> {
+  factory $ExploreSuccessCopyWith(ExploreSuccess value, $Res Function(ExploreSuccess) _then) = _$ExploreSuccessCopyWithImpl;
+@useResult
 $Res call({
- Recipe? recipeOfTheDay, bool listView, List<Recipe> recipes, List<Recipe> filteredRecipe, List<Tag> selectedTags
+ List<Recipe> recipes, List<Recipe> filteredRecipes, List<String> allTags, Recipe? recipeOfTheDay, bool listView, List<String> selectedTags
 });
 
 
-@override $RecipeCopyWith<$Res>? get recipeOfTheDay;
+$RecipeCopyWith<$Res>? get recipeOfTheDay;
 
 }
 /// @nodoc
-class __$ExploreStateCopyWithImpl<$Res>
-    implements _$ExploreStateCopyWith<$Res> {
-  __$ExploreStateCopyWithImpl(this._self, this._then);
+class _$ExploreSuccessCopyWithImpl<$Res>
+    implements $ExploreSuccessCopyWith<$Res> {
+  _$ExploreSuccessCopyWithImpl(this._self, this._then);
 
-  final _ExploreState _self;
-  final $Res Function(_ExploreState) _then;
+  final ExploreSuccess _self;
+  final $Res Function(ExploreSuccess) _then;
 
 /// Create a copy of ExploreState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? recipeOfTheDay = freezed,Object? listView = null,Object? recipes = null,Object? filteredRecipe = null,Object? selectedTags = null,}) {
-  return _then(_ExploreState(
-recipeOfTheDay: freezed == recipeOfTheDay ? _self.recipeOfTheDay : recipeOfTheDay // ignore: cast_nullable_to_non_nullable
+@pragma('vm:prefer-inline') $Res call({Object? recipes = null,Object? filteredRecipes = null,Object? allTags = null,Object? recipeOfTheDay = freezed,Object? listView = null,Object? selectedTags = null,}) {
+  return _then(ExploreSuccess(
+recipes: null == recipes ? _self._recipes : recipes // ignore: cast_nullable_to_non_nullable
+as List<Recipe>,filteredRecipes: null == filteredRecipes ? _self._filteredRecipes : filteredRecipes // ignore: cast_nullable_to_non_nullable
+as List<Recipe>,allTags: null == allTags ? _self._allTags : allTags // ignore: cast_nullable_to_non_nullable
+as List<String>,recipeOfTheDay: freezed == recipeOfTheDay ? _self.recipeOfTheDay : recipeOfTheDay // ignore: cast_nullable_to_non_nullable
 as Recipe?,listView: null == listView ? _self.listView : listView // ignore: cast_nullable_to_non_nullable
-as bool,recipes: null == recipes ? _self._recipes : recipes // ignore: cast_nullable_to_non_nullable
-as List<Recipe>,filteredRecipe: null == filteredRecipe ? _self._filteredRecipe : filteredRecipe // ignore: cast_nullable_to_non_nullable
-as List<Recipe>,selectedTags: null == selectedTags ? _self._selectedTags : selectedTags // ignore: cast_nullable_to_non_nullable
-as List<Tag>,
+as bool,selectedTags: null == selectedTags ? _self._selectedTags : selectedTags // ignore: cast_nullable_to_non_nullable
+as List<String>,
   ));
 }
 
@@ -320,6 +357,72 @@ $RecipeCopyWith<$Res>? get recipeOfTheDay {
     return _then(_self.copyWith(recipeOfTheDay: value));
   });
 }
+}
+
+/// @nodoc
+
+
+class ExploreFailure implements ExploreState {
+  const ExploreFailure({required this.error});
+  
+
+ final  ApiError error;
+
+/// Create a copy of ExploreState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ExploreFailureCopyWith<ExploreFailure> get copyWith => _$ExploreFailureCopyWithImpl<ExploreFailure>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExploreFailure&&(identical(other.error, error) || other.error == error));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,error);
+
+@override
+String toString() {
+  return 'ExploreState.failure(error: $error)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ExploreFailureCopyWith<$Res> implements $ExploreStateCopyWith<$Res> {
+  factory $ExploreFailureCopyWith(ExploreFailure value, $Res Function(ExploreFailure) _then) = _$ExploreFailureCopyWithImpl;
+@useResult
+$Res call({
+ ApiError error
+});
+
+
+
+
+}
+/// @nodoc
+class _$ExploreFailureCopyWithImpl<$Res>
+    implements $ExploreFailureCopyWith<$Res> {
+  _$ExploreFailureCopyWithImpl(this._self, this._then);
+
+  final ExploreFailure _self;
+  final $Res Function(ExploreFailure) _then;
+
+/// Create a copy of ExploreState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
+  return _then(ExploreFailure(
+error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ApiError,
+  ));
+}
+
+
 }
 
 // dart format on
