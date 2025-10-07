@@ -20,7 +20,7 @@ class RecipeApiService {
 
   Future<ApiResult<List<Recipe>>> getRecipes() async {
     try {
-      final response = await _dio.get('/random?includeNutrition=true&number=10');
+      final response = await _dio.get('/random?includeNutrition=true&number=3');
 
       final List<Future<RecipeDTO>>
       recipeDtoFutures = (response.data['recipes'] as List).map((json) async {

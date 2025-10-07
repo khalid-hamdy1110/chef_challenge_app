@@ -37,7 +37,12 @@ class RecipeGridCard extends StatelessWidget {
                   children: [
                     AspectRatio(
                       aspectRatio: 1,
-                      child: CachedNetworkImage(imageUrl: recipe.imageUrl, fit: BoxFit.cover),
+                      child: CachedNetworkImage(
+                        imageUrl: recipe.imageUrl,
+                        fit: BoxFit.cover,
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
@@ -244,7 +249,12 @@ class RecipeCard extends StatelessWidget {
                   children: [
                     AspectRatio(
                       aspectRatio: 1,
-                      child: CachedNetworkImage(imageUrl: recipe.imageUrl, fit: BoxFit.cover),
+                      child: CachedNetworkImage(
+                        imageUrl: recipe.imageUrl,
+                        fit: BoxFit.cover,
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
                     ),
                     Align(
                       alignment: Alignment.centerRight,
@@ -953,7 +963,12 @@ class RecipeHistoryCard extends StatelessWidget {
                   children: [
                     AspectRatio(
                       aspectRatio: 1,
-                      child: CachedNetworkImage(imageUrl: recipe.imageUrl, fit: BoxFit.cover),
+                      child: CachedNetworkImage(
+                        imageUrl: recipe.imageUrl,
+                        fit: BoxFit.cover,
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
                     ),
                     Align(
                       alignment: Alignment.centerRight,

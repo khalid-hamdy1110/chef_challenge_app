@@ -679,7 +679,11 @@ class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
               ),
               child: AspectRatio(
                 aspectRatio: 1,
-                child: CachedNetworkImage(imageUrl: widget.recipe.imageUrl, fit: BoxFit.cover),
+                child: CachedNetworkImage(
+                  imageUrl: widget.recipe.imageUrl,
+                  fit: BoxFit.cover,
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
               ),
             ),
           ),
