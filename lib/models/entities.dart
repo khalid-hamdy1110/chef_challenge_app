@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'entities.freezed.dart';
+part 'entities.g.dart';
 
 enum RecipeType { meat, vegetarian }
 
@@ -14,6 +15,8 @@ enum AcceptanceMarginStatus { beforeMargin, withinMargin, afterMargin }
 abstract class Ingredient with _$Ingredient {
   const factory Ingredient({required String amount, required String name}) =
       _Ingredient;
+
+  factory Ingredient.fromJson(Map<String, dynamic> json) => _$IngredientFromJson(json);
 }
 
 @freezed
@@ -27,6 +30,8 @@ abstract class RecipeStep with _$RecipeStep {
     required Duration acceptableMarginDuration,
     String? comment,
   }) = _RecipeStep;
+
+  factory RecipeStep.fromJson(Map<String, dynamic> json) => _$RecipeStepFromJson(json);
 }
 
 @freezed
@@ -37,6 +42,8 @@ abstract class SummaryStep with _$SummaryStep {
     required AcceptanceMarginStatus marginStatus,
     required Duration totalTimeTaken,
   }) = _SummaryStep;
+
+  factory SummaryStep.fromJson(Map<String, dynamic> json) => _$SummaryStepFromJson(json);
 }
 
 @freezed
@@ -54,6 +61,8 @@ abstract class Recipe with _$Recipe {
     required List<RecipeStep> steps,
     required String imageUrl,
   }) = _Recipe;
+
+  factory Recipe.fromJson(Map<String, dynamic> json) => _$RecipeFromJson(json);
 }
 
 extension RecipeGetters on Recipe {
@@ -131,4 +140,6 @@ abstract class RecipeHistory with _$RecipeHistory {
     required Recipe recipe,
     required List<SummaryStep> summary
   }) = _RecipeHistory;
+
+  factory RecipeHistory.fromJson(Map<String, dynamic> json) => _$RecipeHistoryFromJson(json);
 }

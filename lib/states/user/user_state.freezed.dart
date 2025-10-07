@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserState {
 
- Difficulty? get cookingLevel; String? get name; List<Recipe> get favorites; List<RecipeHistory> get history;
+ Difficulty? get cookingLevel; String? get name; List<Recipe> get favorites; List<RecipeHistory> get history; bool get showOnboarding;
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $UserStateCopyWith<UserState> get copyWith => _$UserStateCopyWithImpl<UserState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserState&&(identical(other.cookingLevel, cookingLevel) || other.cookingLevel == cookingLevel)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.favorites, favorites)&&const DeepCollectionEquality().equals(other.history, history));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserState&&(identical(other.cookingLevel, cookingLevel) || other.cookingLevel == cookingLevel)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.favorites, favorites)&&const DeepCollectionEquality().equals(other.history, history)&&(identical(other.showOnboarding, showOnboarding) || other.showOnboarding == showOnboarding));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,cookingLevel,name,const DeepCollectionEquality().hash(favorites),const DeepCollectionEquality().hash(history));
+int get hashCode => Object.hash(runtimeType,cookingLevel,name,const DeepCollectionEquality().hash(favorites),const DeepCollectionEquality().hash(history),showOnboarding);
 
 @override
 String toString() {
-  return 'UserState(cookingLevel: $cookingLevel, name: $name, favorites: $favorites, history: $history)';
+  return 'UserState(cookingLevel: $cookingLevel, name: $name, favorites: $favorites, history: $history, showOnboarding: $showOnboarding)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $UserStateCopyWith<$Res>  {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) _then) = _$UserStateCopyWithImpl;
 @useResult
 $Res call({
- Difficulty? cookingLevel, String? name, List<Recipe> favorites, List<RecipeHistory> history
+ Difficulty? cookingLevel, String? name, List<Recipe> favorites, List<RecipeHistory> history, bool showOnboarding
 });
 
 
@@ -62,13 +62,14 @@ class _$UserStateCopyWithImpl<$Res>
 
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? cookingLevel = freezed,Object? name = freezed,Object? favorites = null,Object? history = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? cookingLevel = freezed,Object? name = freezed,Object? favorites = null,Object? history = null,Object? showOnboarding = null,}) {
   return _then(_self.copyWith(
 cookingLevel: freezed == cookingLevel ? _self.cookingLevel : cookingLevel // ignore: cast_nullable_to_non_nullable
 as Difficulty?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,favorites: null == favorites ? _self.favorites : favorites // ignore: cast_nullable_to_non_nullable
 as List<Recipe>,history: null == history ? _self.history : history // ignore: cast_nullable_to_non_nullable
-as List<RecipeHistory>,
+as List<RecipeHistory>,showOnboarding: null == showOnboarding ? _self.showOnboarding : showOnboarding // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -153,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Difficulty? cookingLevel,  String? name,  List<Recipe> favorites,  List<RecipeHistory> history)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Difficulty? cookingLevel,  String? name,  List<Recipe> favorites,  List<RecipeHistory> history,  bool showOnboarding)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserState() when $default != null:
-return $default(_that.cookingLevel,_that.name,_that.favorites,_that.history);case _:
+return $default(_that.cookingLevel,_that.name,_that.favorites,_that.history,_that.showOnboarding);case _:
   return orElse();
 
 }
@@ -174,10 +175,10 @@ return $default(_that.cookingLevel,_that.name,_that.favorites,_that.history);cas
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Difficulty? cookingLevel,  String? name,  List<Recipe> favorites,  List<RecipeHistory> history)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Difficulty? cookingLevel,  String? name,  List<Recipe> favorites,  List<RecipeHistory> history,  bool showOnboarding)  $default,) {final _that = this;
 switch (_that) {
 case _UserState():
-return $default(_that.cookingLevel,_that.name,_that.favorites,_that.history);case _:
+return $default(_that.cookingLevel,_that.name,_that.favorites,_that.history,_that.showOnboarding);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -194,10 +195,10 @@ return $default(_that.cookingLevel,_that.name,_that.favorites,_that.history);cas
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Difficulty? cookingLevel,  String? name,  List<Recipe> favorites,  List<RecipeHistory> history)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Difficulty? cookingLevel,  String? name,  List<Recipe> favorites,  List<RecipeHistory> history,  bool showOnboarding)?  $default,) {final _that = this;
 switch (_that) {
 case _UserState() when $default != null:
-return $default(_that.cookingLevel,_that.name,_that.favorites,_that.history);case _:
+return $default(_that.cookingLevel,_that.name,_that.favorites,_that.history,_that.showOnboarding);case _:
   return null;
 
 }
@@ -209,7 +210,7 @@ return $default(_that.cookingLevel,_that.name,_that.favorites,_that.history);cas
 
 
 class _UserState implements UserState {
-  const _UserState({required this.cookingLevel, required this.name, required final  List<Recipe> favorites, required final  List<RecipeHistory> history}): _favorites = favorites,_history = history;
+  const _UserState({required this.cookingLevel, required this.name, required final  List<Recipe> favorites, required final  List<RecipeHistory> history, required this.showOnboarding}): _favorites = favorites,_history = history;
   
 
 @override final  Difficulty? cookingLevel;
@@ -228,6 +229,7 @@ class _UserState implements UserState {
   return EqualUnmodifiableListView(_history);
 }
 
+@override final  bool showOnboarding;
 
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
@@ -239,16 +241,16 @@ _$UserStateCopyWith<_UserState> get copyWith => __$UserStateCopyWithImpl<_UserSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserState&&(identical(other.cookingLevel, cookingLevel) || other.cookingLevel == cookingLevel)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other._favorites, _favorites)&&const DeepCollectionEquality().equals(other._history, _history));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserState&&(identical(other.cookingLevel, cookingLevel) || other.cookingLevel == cookingLevel)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other._favorites, _favorites)&&const DeepCollectionEquality().equals(other._history, _history)&&(identical(other.showOnboarding, showOnboarding) || other.showOnboarding == showOnboarding));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,cookingLevel,name,const DeepCollectionEquality().hash(_favorites),const DeepCollectionEquality().hash(_history));
+int get hashCode => Object.hash(runtimeType,cookingLevel,name,const DeepCollectionEquality().hash(_favorites),const DeepCollectionEquality().hash(_history),showOnboarding);
 
 @override
 String toString() {
-  return 'UserState(cookingLevel: $cookingLevel, name: $name, favorites: $favorites, history: $history)';
+  return 'UserState(cookingLevel: $cookingLevel, name: $name, favorites: $favorites, history: $history, showOnboarding: $showOnboarding)';
 }
 
 
@@ -259,7 +261,7 @@ abstract mixin class _$UserStateCopyWith<$Res> implements $UserStateCopyWith<$Re
   factory _$UserStateCopyWith(_UserState value, $Res Function(_UserState) _then) = __$UserStateCopyWithImpl;
 @override @useResult
 $Res call({
- Difficulty? cookingLevel, String? name, List<Recipe> favorites, List<RecipeHistory> history
+ Difficulty? cookingLevel, String? name, List<Recipe> favorites, List<RecipeHistory> history, bool showOnboarding
 });
 
 
@@ -276,13 +278,14 @@ class __$UserStateCopyWithImpl<$Res>
 
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? cookingLevel = freezed,Object? name = freezed,Object? favorites = null,Object? history = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? cookingLevel = freezed,Object? name = freezed,Object? favorites = null,Object? history = null,Object? showOnboarding = null,}) {
   return _then(_UserState(
 cookingLevel: freezed == cookingLevel ? _self.cookingLevel : cookingLevel // ignore: cast_nullable_to_non_nullable
 as Difficulty?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,favorites: null == favorites ? _self._favorites : favorites // ignore: cast_nullable_to_non_nullable
 as List<Recipe>,history: null == history ? _self._history : history // ignore: cast_nullable_to_non_nullable
-as List<RecipeHistory>,
+as List<RecipeHistory>,showOnboarding: null == showOnboarding ? _self.showOnboarding : showOnboarding // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

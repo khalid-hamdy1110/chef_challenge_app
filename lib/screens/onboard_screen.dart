@@ -87,30 +87,18 @@ class _OnboardScreenState extends State<OnboardScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Column(
                     children: [
-                      BlocSelector<
-                        UserCubit,
-                        UserState,
-                        ({bool nameDefined, bool levelDefined})
-                      >(
-                        selector: (state) => (
-                          nameDefined: state.name != null,
-                          levelDefined: state.cookingLevel != null,
-                        ),
-                        builder: (state, data) => Padding(
+                      BlocBuilder<UserCubit, UserState>(
+                        builder: (context, state) => Padding(
                           padding: const EdgeInsets.only(right: 16),
                           child: Align(
                             alignment: Alignment.centerRight,
                             child: GestureDetector(
                               onTap: () {
-                                if (!data.nameDefined) {
-                                  context.read<UserCubit>().setName('User');
-                                }
-                                if (!data.levelDefined) {
-                                  context.read<UserCubit>().setCookingLevel(
-                                    Difficulty.beginner,
-                                  );
-                                }
-
+                                context.read<UserCubit>().setName('User');
+                                context.read<UserCubit>().setCookingLevel(
+                                  Difficulty.beginner,
+                                );
+                                context.read<UserCubit>().onFirstOnboarding();
                                 context.router.replace(
                                   const ExploreShellRoute(),
                                 );
@@ -297,8 +285,10 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     margin: EdgeInsets.zero,
                     onPressed: disableButton
                         ? null
-                        : () =>
-                              context.router.replace(const ExploreShellRoute()),
+                        : () {
+                            context.router.replace(const ExploreShellRoute());
+                            context.read<UserCubit>().onFirstOnboarding();
+                          },
                     color: disableButton
                         ? const Color.fromRGBO(224, 161, 110, 1)
                         : null,

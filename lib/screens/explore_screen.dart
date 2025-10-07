@@ -1,11 +1,13 @@
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chef_challenge_project/adaptive_framework.dart';
 import 'package:chef_challenge_project/data/recipe_api_service.dart';
 import 'package:chef_challenge_project/models/api_result.dart';
 import 'package:chef_challenge_project/models/entities.dart';
 import 'package:chef_challenge_project/states/user/user_state.dart';
+import 'package:chef_challenge_project/widgets/custom_button.dart';
 import 'package:chef_challenge_project/widgets/reusable_widgets.dart';
 import 'package:chef_challenge_project/route_config/app_router.gr.dart';
 import 'package:chef_challenge_project/states/explore/explore_cubit.dart';
@@ -27,10 +29,12 @@ class ExploreScreen extends StatefulWidget {
 class _ExploreScreenState extends State<ExploreScreen> {
   final menuController = MenuController();
   final searchController = TextEditingController();
+  final nameController = TextEditingController();
 
   @override
   void dispose() {
     searchController.dispose();
+    nameController.dispose();
     super.dispose();
   }
 
@@ -75,7 +79,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         return CustomScrollView(
                           slivers: [
                             SliverToBoxAdapter(
-                              child: _greetingAndDifficultySelectorBar(),
+                              child: _greetingAndDifficultySelectorBar(context),
                             ),
                             const SliverToBoxAdapter(
                               child: SizedBox(height: 32),
@@ -307,7 +311,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 child: BlocBuilder<ExploreCubit, ExploreState>(
                   builder: (context, state) {
                     return state.maybeWhen(
-                      orElse: () => const Text('hello'),
+                      orElse: () => const Text(''),
                       success:
                           (
                             recipes,
@@ -509,7 +513,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage(recipeOfTheDay.imageUrl),
+            image: CachedNetworkImageProvider(recipeOfTheDay.imageUrl),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.circular(24),
@@ -654,43 +658,124 @@ class _ExploreScreenState extends State<ExploreScreen> {
     );
   }
 
-  IntrinsicHeight _greetingAndDifficultySelectorBar() {
+  IntrinsicHeight _greetingAndDifficultySelectorBar(BuildContext context) {
     return IntrinsicHeight(
       child: Row(
         children: [
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Wrap(
-                  children: [
-                    CustomText(
-                      text: _getCurrentGreeting(),
-                      nunito: false,
-                      fontSize: 22,
-                      fontWeight: FontWeight.w400,
-                      color: TextColor.white,
-                    ),
-                    BlocSelector<UserCubit, UserState, String?>(
-                      selector: (state) => state.name,
-                      builder: (context, name) => CustomText(
-                        text: '$name!',
+            child: GestureDetector(
+              onTap: () {
+                showModalBottomSheet(
+                  showDragHandle: true,
+                  isScrollControlled: true,
+                  context: context,
+                  builder: (modalContext) => BlocBuilder<UserCubit, UserState>(
+                    builder: (stateContext, state) {
+                      return Padding(
+                        padding: EdgeInsetsGeometry.only(
+                          right: 16,
+                          left: 16,
+                          bottom: MediaQuery.of(context).viewInsets.bottom,
+                        ),
+                        child: IntrinsicHeight(
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.only(
+                                  left: 15,
+                                  top: 11,
+                                  bottom: 11,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: const Color.fromRGBO(24, 27, 33, 1),
+                                  border: Border.all(
+                                    color: const Color.fromRGBO(43, 46, 51, 1),
+                                  ),
+                                  borderRadius: BorderRadius.circular(14),
+                                ),
+                                child: Row(
+                                  children: [
+                                    const Icon(Icons.edit, size: 16),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: TextField(
+                                        controller: nameController,
+                                        decoration: const InputDecoration(
+                                          hint: CustomText(
+                                            text: 'Edit name...',
+                                            nunito: true,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: TextColor.grey,
+                                            maxLines: 1,
+                                          ),
+                                          border: InputBorder.none,
+                                          isDense: true,
+                                          contentPadding: EdgeInsets.all(0),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              CustomButton(
+                                onPressed: () {
+                                  if (nameController.text.isNotEmpty) {
+                                    stateContext.read<UserCubit>().setName(
+                                      nameController.text,
+                                    );
+                                    nameController.text = '';
+                                  }
+                                  context.router.pop();
+                                },
+                                label: 'Save',
+                                icon: SvgPicture.asset(
+                                  'assets/icons/check.svg',
+                                ),
+                                margin: const EdgeInsets.symmetric(vertical: 8),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      CustomText(
+                        text: _getCurrentGreeting(),
                         nunito: false,
                         fontSize: 22,
                         fontWeight: FontWeight.w400,
-                        color: TextColor.orange,
+                        color: TextColor.white,
                       ),
-                    ),
-                  ],
-                ),
-                const CustomText(
-                  text: 'Ready to cook something amazing?',
-                  nunito: true,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: TextColor.grey,
-                ),
-              ],
+                      BlocSelector<UserCubit, UserState, String?>(
+                        selector: (state) => state.name,
+                        builder: (context, name) => CustomText(
+                          text: '$name!',
+                          nunito: false,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w400,
+                          color: TextColor.orange,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const CustomText(
+                    text: 'Ready to cook something amazing?',
+                    nunito: true,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: TextColor.grey,
+                  ),
+                ],
+              ),
             ),
           ),
           Column(

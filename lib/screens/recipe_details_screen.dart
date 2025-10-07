@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blurrycontainer/blurrycontainer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chef_challenge_project/models/entities.dart';
 import 'package:chef_challenge_project/route_config/app_router.gr.dart';
 import 'package:chef_challenge_project/states/user/user_cubit.dart';
@@ -678,7 +679,7 @@ class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
               ),
               child: AspectRatio(
                 aspectRatio: 1,
-                child: Image.network(widget.recipe.imageUrl, fit: BoxFit.cover),
+                child: CachedNetworkImage(imageUrl: widget.recipe.imageUrl, fit: BoxFit.cover),
               ),
             ),
           ),

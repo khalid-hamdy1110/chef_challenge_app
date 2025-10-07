@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:chef_challenge_project/models/entities.dart';
-import 'package:chef_challenge_project/route_config/app_router.gr.dart';
 import 'package:chef_challenge_project/states/user/user_cubit.dart';
 import 'package:chef_challenge_project/states/user/user_state.dart';
 import 'package:chef_challenge_project/widgets/custom_divider.dart';
@@ -78,7 +77,7 @@ class RecipeChallengeSummaryScreen extends StatelessWidget {
         alignment: Alignment.centerRight,
         child: GestureDetector(
           onTap: () {
-            context.router.replaceAll([const NavigationBarRoute()]);
+            context.router.popUntilRoot();
           },
           child: Container(
             decoration: BoxDecoration(

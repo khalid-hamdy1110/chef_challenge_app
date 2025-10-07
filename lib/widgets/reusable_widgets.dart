@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chef_challenge_project/models/entities.dart';
 import 'package:chef_challenge_project/route_config/app_router.gr.dart';
 import 'package:chef_challenge_project/states/user/user_cubit.dart';
@@ -36,7 +37,7 @@ class RecipeGridCard extends StatelessWidget {
                   children: [
                     AspectRatio(
                       aspectRatio: 1,
-                      child: Image.network(recipe.imageUrl, fit: BoxFit.cover),
+                      child: CachedNetworkImage(imageUrl: recipe.imageUrl, fit: BoxFit.cover),
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
@@ -243,7 +244,7 @@ class RecipeCard extends StatelessWidget {
                   children: [
                     AspectRatio(
                       aspectRatio: 1,
-                      child: Image.network(recipe.imageUrl, fit: BoxFit.cover),
+                      child: CachedNetworkImage(imageUrl: recipe.imageUrl, fit: BoxFit.cover),
                     ),
                     Align(
                       alignment: Alignment.centerRight,
@@ -952,7 +953,7 @@ class RecipeHistoryCard extends StatelessWidget {
                   children: [
                     AspectRatio(
                       aspectRatio: 1,
-                      child: Image.network(recipe.imageUrl, fit: BoxFit.cover),
+                      child: CachedNetworkImage(imageUrl: recipe.imageUrl, fit: BoxFit.cover),
                     ),
                     Align(
                       alignment: Alignment.centerRight,

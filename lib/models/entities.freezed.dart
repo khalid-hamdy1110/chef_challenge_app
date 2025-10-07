@@ -11,6 +11,7 @@ part of 'entities.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$Ingredient {
 
@@ -21,6 +22,8 @@ mixin _$Ingredient {
 @pragma('vm:prefer-inline')
 $IngredientCopyWith<Ingredient> get copyWith => _$IngredientCopyWithImpl<Ingredient>(this as Ingredient, _$identity);
 
+  /// Serializes this Ingredient to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is Ingredient&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.name, name) || other.name == name));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,amount,name);
 
@@ -204,11 +207,11 @@ return $default(_that.amount,_that.name);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _Ingredient implements Ingredient {
   const _Ingredient({required this.amount, required this.name});
-  
+  factory _Ingredient.fromJson(Map<String, dynamic> json) => _$IngredientFromJson(json);
 
 @override final  String amount;
 @override final  String name;
@@ -219,14 +222,17 @@ class _Ingredient implements Ingredient {
 @pragma('vm:prefer-inline')
 _$IngredientCopyWith<_Ingredient> get copyWith => __$IngredientCopyWithImpl<_Ingredient>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$IngredientToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _Ingredient&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.name, name) || other.name == name));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,amount,name);
 
@@ -271,6 +277,7 @@ as String,
 
 }
 
+
 /// @nodoc
 mixin _$RecipeStep {
 
@@ -281,6 +288,8 @@ mixin _$RecipeStep {
 @pragma('vm:prefer-inline')
 $RecipeStepCopyWith<RecipeStep> get copyWith => _$RecipeStepCopyWithImpl<RecipeStep>(this as RecipeStep, _$identity);
 
+  /// Serializes this RecipeStep to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -288,7 +297,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is RecipeStep&&(identical(other.number, number) || other.number == number)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.stepType, stepType) || other.stepType == stepType)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.acceptableMarginDuration, acceptableMarginDuration) || other.acceptableMarginDuration == acceptableMarginDuration)&&(identical(other.comment, comment) || other.comment == comment));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,number,name,description,stepType,duration,acceptableMarginDuration,comment);
 
@@ -469,11 +478,11 @@ return $default(_that.number,_that.name,_that.description,_that.stepType,_that.d
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _RecipeStep implements RecipeStep {
   const _RecipeStep({required this.number, required this.name, required this.description, required this.stepType, required this.duration, required this.acceptableMarginDuration, this.comment});
-  
+  factory _RecipeStep.fromJson(Map<String, dynamic> json) => _$RecipeStepFromJson(json);
 
 @override final  int number;
 @override final  String name;
@@ -489,14 +498,17 @@ class _RecipeStep implements RecipeStep {
 @pragma('vm:prefer-inline')
 _$RecipeStepCopyWith<_RecipeStep> get copyWith => __$RecipeStepCopyWithImpl<_RecipeStep>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$RecipeStepToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _RecipeStep&&(identical(other.number, number) || other.number == number)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.stepType, stepType) || other.stepType == stepType)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.acceptableMarginDuration, acceptableMarginDuration) || other.acceptableMarginDuration == acceptableMarginDuration)&&(identical(other.comment, comment) || other.comment == comment));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,number,name,description,stepType,duration,acceptableMarginDuration,comment);
 
@@ -546,6 +558,7 @@ as String?,
 
 }
 
+
 /// @nodoc
 mixin _$SummaryStep {
 
@@ -556,6 +569,8 @@ mixin _$SummaryStep {
 @pragma('vm:prefer-inline')
 $SummaryStepCopyWith<SummaryStep> get copyWith => _$SummaryStepCopyWithImpl<SummaryStep>(this as SummaryStep, _$identity);
 
+  /// Serializes this SummaryStep to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -563,7 +578,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is SummaryStep&&(identical(other.step, step) || other.step == step)&&(identical(other.timeTaken, timeTaken) || other.timeTaken == timeTaken)&&(identical(other.marginStatus, marginStatus) || other.marginStatus == marginStatus)&&(identical(other.totalTimeTaken, totalTimeTaken) || other.totalTimeTaken == totalTimeTaken));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,step,timeTaken,marginStatus,totalTimeTaken);
 
@@ -750,11 +765,11 @@ return $default(_that.step,_that.timeTaken,_that.marginStatus,_that.totalTimeTak
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _SummaryStep implements SummaryStep {
   const _SummaryStep({required this.step, required this.timeTaken, required this.marginStatus, required this.totalTimeTaken});
-  
+  factory _SummaryStep.fromJson(Map<String, dynamic> json) => _$SummaryStepFromJson(json);
 
 @override final  RecipeStep step;
 @override final  Duration timeTaken;
@@ -767,14 +782,17 @@ class _SummaryStep implements SummaryStep {
 @pragma('vm:prefer-inline')
 _$SummaryStepCopyWith<_SummaryStep> get copyWith => __$SummaryStepCopyWithImpl<_SummaryStep>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$SummaryStepToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _SummaryStep&&(identical(other.step, step) || other.step == step)&&(identical(other.timeTaken, timeTaken) || other.timeTaken == timeTaken)&&(identical(other.marginStatus, marginStatus) || other.marginStatus == marginStatus)&&(identical(other.totalTimeTaken, totalTimeTaken) || other.totalTimeTaken == totalTimeTaken));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,step,timeTaken,marginStatus,totalTimeTaken);
 
@@ -830,6 +848,7 @@ $RecipeStepCopyWith<$Res> get step {
 }
 }
 
+
 /// @nodoc
 mixin _$Recipe {
 
@@ -840,6 +859,8 @@ mixin _$Recipe {
 @pragma('vm:prefer-inline')
 $RecipeCopyWith<Recipe> get copyWith => _$RecipeCopyWithImpl<Recipe>(this as Recipe, _$identity);
 
+  /// Serializes this Recipe to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -847,7 +868,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is Recipe&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.recipeType, recipeType) || other.recipeType == recipeType)&&(identical(other.difficulty, difficulty) || other.difficulty == difficulty)&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other.ingredients, ingredients)&&(identical(other.calories, calories) || other.calories == calories)&&(identical(other.protein, protein) || other.protein == protein)&&(identical(other.carbs, carbs) || other.carbs == carbs)&&const DeepCollectionEquality().equals(other.steps, steps)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,name,const DeepCollectionEquality().hash(tags),recipeType,difficulty,description,const DeepCollectionEquality().hash(ingredients),calories,protein,carbs,const DeepCollectionEquality().hash(steps),imageUrl);
 
@@ -1032,11 +1053,11 @@ return $default(_that.name,_that.tags,_that.recipeType,_that.difficulty,_that.de
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _Recipe implements Recipe {
   const _Recipe({required this.name, required final  List<String> tags, required this.recipeType, required this.difficulty, required this.description, required final  List<Ingredient> ingredients, required this.calories, required this.protein, required this.carbs, required final  List<RecipeStep> steps, required this.imageUrl}): _tags = tags,_ingredients = ingredients,_steps = steps;
-  
+  factory _Recipe.fromJson(Map<String, dynamic> json) => _$RecipeFromJson(json);
 
 @override final  String name;
  final  List<String> _tags;
@@ -1074,14 +1095,17 @@ class _Recipe implements Recipe {
 @pragma('vm:prefer-inline')
 _$RecipeCopyWith<_Recipe> get copyWith => __$RecipeCopyWithImpl<_Recipe>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$RecipeToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _Recipe&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.recipeType, recipeType) || other.recipeType == recipeType)&&(identical(other.difficulty, difficulty) || other.difficulty == difficulty)&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other._ingredients, _ingredients)&&(identical(other.calories, calories) || other.calories == calories)&&(identical(other.protein, protein) || other.protein == protein)&&(identical(other.carbs, carbs) || other.carbs == carbs)&&const DeepCollectionEquality().equals(other._steps, _steps)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,name,const DeepCollectionEquality().hash(_tags),recipeType,difficulty,description,const DeepCollectionEquality().hash(_ingredients),calories,protein,carbs,const DeepCollectionEquality().hash(_steps),imageUrl);
 
@@ -1135,6 +1159,7 @@ as String,
 
 }
 
+
 /// @nodoc
 mixin _$RecipeHistory {
 
@@ -1145,6 +1170,8 @@ mixin _$RecipeHistory {
 @pragma('vm:prefer-inline')
 $RecipeHistoryCopyWith<RecipeHistory> get copyWith => _$RecipeHistoryCopyWithImpl<RecipeHistory>(this as RecipeHistory, _$identity);
 
+  /// Serializes this RecipeHistory to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -1152,7 +1179,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is RecipeHistory&&(identical(other.recipe, recipe) || other.recipe == recipe)&&const DeepCollectionEquality().equals(other.summary, summary));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,recipe,const DeepCollectionEquality().hash(summary));
 
@@ -1337,11 +1364,11 @@ return $default(_that.recipe,_that.summary);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _RecipeHistory implements RecipeHistory {
   const _RecipeHistory({required this.recipe, required final  List<SummaryStep> summary}): _summary = summary;
-  
+  factory _RecipeHistory.fromJson(Map<String, dynamic> json) => _$RecipeHistoryFromJson(json);
 
 @override final  Recipe recipe;
  final  List<SummaryStep> _summary;
@@ -1358,14 +1385,17 @@ class _RecipeHistory implements RecipeHistory {
 @pragma('vm:prefer-inline')
 _$RecipeHistoryCopyWith<_RecipeHistory> get copyWith => __$RecipeHistoryCopyWithImpl<_RecipeHistory>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$RecipeHistoryToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _RecipeHistory&&(identical(other.recipe, recipe) || other.recipe == recipe)&&const DeepCollectionEquality().equals(other._summary, _summary));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,recipe,const DeepCollectionEquality().hash(_summary));
 

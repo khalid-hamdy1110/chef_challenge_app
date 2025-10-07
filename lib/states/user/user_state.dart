@@ -10,6 +10,7 @@ abstract class UserState with _$UserState {
     required String? name,
     required List<Recipe> favorites,
     required List<RecipeHistory> history,
+    required bool showOnboarding
   }) = _UserState;
 
   factory UserState.initial() {
@@ -18,6 +19,7 @@ abstract class UserState with _$UserState {
       name: null,
       favorites: [],
       history: [],
+      showOnboarding: true
     );
   }
 }
