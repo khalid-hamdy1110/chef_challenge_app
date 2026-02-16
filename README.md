@@ -4,6 +4,8 @@ Chef Challenge is a Flutter application designed to turn cooking into a fun, gam
 
 The app provides timed challenges based on recipes, where each step has an expected duration and an acceptable time margin. After completing a recipe, you receive a detailed summary of your performance.
 
+# Video Demo: [Chef Challenge Video Demo](https://www.linkedin.com/posts/khalid-hamdy_flutter-appdevelopment-softwareengineering-activity-7370003076742635520-f-l9)
+
 ## Features
 
 - **Gamified Cooking:** Engage in timed cooking challenges to improve your skills.
